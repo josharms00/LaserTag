@@ -12,6 +12,7 @@ public class ChasePlayer : MonoBehaviour
 
     Tagged tagged;
 
+
     void Awake ()
     {
         player = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -19,6 +20,7 @@ public class ChasePlayer : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
 
         tagged = GetComponent<Tagged> ();
+        
     }
 
     // Update is called once per frame

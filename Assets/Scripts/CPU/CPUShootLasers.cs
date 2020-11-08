@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootLasers : MonoBehaviour
+public class CPUShootLasers : MonoBehaviour
 {
     LineRenderer laserLine;
 
@@ -19,9 +19,11 @@ public class ShootLasers : MonoBehaviour
     public float range = 100f;
     float timer;
 
-    Tagged hit;
+    Tagged Playerhit;
 
     Tagged self;
+
+    CPUSight sight;
 
     void Awake()
     {
@@ -31,6 +33,8 @@ public class ShootLasers : MonoBehaviour
 
         // Create a layer mask for the Shootable layer.
         shootableMask = LayerMask.GetMask ("Shootable");
+
+        sight = GetComponentInParent<CPUSight> ();
 
         self = GetComponentInParent<Tagged> ();
     }
@@ -43,10 +47,8 @@ public class ShootLasers : MonoBehaviour
 
         if (timer >= timeBetweenLasers && Time.timeScale != 0)
         {
-            
-            // If the Fire1 button is being press and it's time to fire...
-            // player also has to be it to shoot
-            if (Input.GetButton("Fire1") && self.It)
+            // If the player is in sight and this character is it
+            if (sight.playerInView && self.It)
             {
                 // ... shoot the gun.
                 Shoot();
@@ -85,11 +87,11 @@ public class ShootLasers : MonoBehaviour
             // Set the second position of the line renderer to the point the raycast hit.
             laserLine.SetPosition (1, shootHit.point);
 
-            hit = shootHit.collider.GetComponent <Tagged> ();
+            Playerhit = shootHit.collider.GetComponent <Tagged> ();
 
-            if(hit != null)
+            if(Playerhit != null)
             {
-                hit.It = true;
+                Playerhit.It = true;
                 self.It = false;
             }
         }
