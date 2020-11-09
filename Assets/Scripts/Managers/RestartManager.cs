@@ -14,6 +14,6 @@ public class RestartManager : MonoBehaviour
 	}
 
 	void Restart(){
-		SceneManager.LoadScene("DartTagArena", LoadSceneMode.Single);
+		SceneManager.LoadScene("LaserTagArena", LoadSceneMode.Single);
 	}
 }

@@ -16,16 +16,16 @@ public class GameOverManager : MonoBehaviour
         {
             AddToLeaderboard();
 
-            SceneManager.LoadScene("DartTagArena", LoadSceneMode.Single);
+            SceneManager.LoadScene("LaserTagArena", LoadSceneMode.Single);
         }
     }
 
     void AddToLeaderboard()
     {
-        LeaderBoardEntry p1 = new LeaderBoardEntry();
+        LeaderBoardEntry p1 = gameObject.AddComponent<LeaderBoardEntry>();
         p1.AddEntry("Player 1", scoreManager.p1Score);
 
-        LeaderBoardEntry p2 = new LeaderBoardEntry();
+        LeaderBoardEntry p2 = gameObject.AddComponent<LeaderBoardEntry>();
         p2.AddEntry("Player 2", scoreManager.p2Score);
 
         LeaderboardManager.entries.Add(p1);
