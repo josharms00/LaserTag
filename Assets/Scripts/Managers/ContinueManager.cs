@@ -21,6 +21,5 @@ public class ContinueManager : MonoBehaviour
 	void Continue(){
 		menu.enabled = false;
         p.paused = false;
-
 	}
 }

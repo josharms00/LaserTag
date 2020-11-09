@@ -9,6 +9,10 @@ public class ScoreManager : MonoBehaviour
 
     Tagged p1Tag;
 
+    public int p1Score;
+
+    public int p2Score;
+
     GameObject player2;
 
     Tagged p2Tag;
@@ -34,8 +38,17 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        scores[0].text = "P1: " + Mathf.FloorToInt(p1Tag.timeNotIt) + "s";
+        p1Score = Mathf.FloorToInt(p1Tag.timeNotIt);
 
-        scores[1].text = "P2: " + Mathf.FloorToInt(p2Tag.timeNotIt) + "s";
+        p2Score = Mathf.FloorToInt(p2Tag.timeNotIt);
+
+        DisplayScore();
+    }
+
+    void DisplayScore()
+    {
+        scores[0].text = "P1: " + p1Score + "s";
+
+        scores[1].text = "P2: " + p2Score + "s";
     }
 }
