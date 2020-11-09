@@ -12,22 +12,33 @@ public class Player1Movement : MonoBehaviour
         Animator anim;
         Rigidbody playerRigidBody;
 
+        public GameObject menu;
+
+        PauseManager p;
+
+
         // always is called regardless of if script is enabled
         void Awake()
         {
             anim = GetComponent<Animator>();
             playerRigidBody = GetComponent <Rigidbody> ();
+
+            p = menu.GetComponent<PauseManager>();
         }
 
         // fires every physics update
         void FixedUpdate()
         {
-            // raw axis only has -1, 0, 1
-            float h = Input.GetAxisRaw("Horizontal"); // a and d keys
-            float v = Input.GetAxisRaw("Vertical"); // w and s keys
+            if(!p.paused)
+            {
+                // raw axis only has -1, 0, 1
+                float h = Input.GetAxisRaw("Horizontal"); // a and d keys
+                float v = Input.GetAxisRaw("Vertical"); // w and s keys
 
-            Move(h, v);
-            Animating(h, v);
+                Move(h, v);
+                Animating(h, v);
+            }
+            
         }
 
         void Move (float h, float v)

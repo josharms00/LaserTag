@@ -14,6 +14,12 @@ public class ChasePlayer : MonoBehaviour
 
     Animator anim;
 
+    public GameObject menu;
+
+    PauseManager p;
+
+    Rigidbody rb;
+
 
     void Awake ()
     {
@@ -24,6 +30,10 @@ public class ChasePlayer : MonoBehaviour
         tagged = GetComponent<Tagged> ();
 
         anim = GetComponent<Animator>();
+
+        p = menu.GetComponent<PauseManager>();
+
+        rb = GetComponent<Rigidbody> ();
         
     }
 
@@ -31,17 +41,29 @@ public class ChasePlayer : MonoBehaviour
     void Update()
     {
         
+        if(p.paused)
+        {
+            nav.isStopped = true;
+            anim.SetBool("IsMoving", false);
+        }
+        else{
+            nav.isStopped = false;
 
-        if(tagged.It)
-        {
-            nav.SetDestination(player.position);
+            if(tagged.It)
+            {
+                nav.SetDestination(player.position);
+            }
+            else
+            {
+                nav.SetDestination(10*player.forward);
+            }
+            
+            anim.SetBool("IsMoving", true);
         }
-        else
-        {
-            nav.SetDestination(10*player.forward);
-        }
+
         
-        anim.SetBool("IsMoving", true);
+        
+        
         
     }
 }

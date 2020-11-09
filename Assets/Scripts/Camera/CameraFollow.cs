@@ -10,31 +10,33 @@ public class CameraFollow : MonoBehaviour
 
     float MouseX, MouseY;
 
+    public GameObject menu;
+
+    PauseManager p;
+
     void Start ()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
+        
         // Calculate the initial offset.
         offset = transform.position - player.position;
+
+        p = menu.GetComponent<PauseManager>();
     }
 
 
     void FixedUpdate ()
     {
-        MouseX += Input.GetAxis("Mouse X");
-        MouseY -= Input.GetAxis("Mouse Y");
-        MouseY = Mathf.Clamp(MouseY, -35, 60);
+        if(!p.paused)
+        {
+            MouseX += Input.GetAxis("Mouse X");
+            MouseY -= Input.GetAxis("Mouse Y");
+            MouseY = Mathf.Clamp(MouseY, -35, 60);
 
-        transform.LookAt(cam);
+            transform.LookAt(cam);
 
-        cam.rotation = Quaternion.Euler(MouseY, MouseX, 0);
-        player.rotation = Quaternion.Euler(0, MouseX, 0);
+            cam.rotation = Quaternion.Euler(MouseY, MouseX, 0);
+            player.rotation = Quaternion.Euler(0, MouseX, 0);
+        }
 
-        // Create a postion the camera is aiming for based on the offset from the target.
-        // Vector3 targetCamPos = player.position + offset;
-
-        // // Smoothly interpolate between the camera's current position and it's target position.
-        // transform.position = targetCamPos;
     }
 }

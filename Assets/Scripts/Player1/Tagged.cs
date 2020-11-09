@@ -9,15 +9,31 @@ public class Tagged : MonoBehaviour
 
     public Text itText;
 
+    public float timeNotIt = 0f;
+
+    public GameObject menu;
+
+    PauseManager p;
+
+    void Awake()
+    {
+
+        p = menu.GetComponent<PauseManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (It)
+        if(!p.paused)
         {
-            itText.enabled = true;
-        }
-        else{
-            itText.enabled = false;
+            if (It)
+            {
+                itText.enabled = true;
+            }
+            else{
+                itText.enabled = false;
+                timeNotIt += Time.deltaTime;
+            }
         }
     }
 }

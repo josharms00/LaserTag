@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class ShootLasers : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class ShootLasers : MonoBehaviour
     public float range = 100f;
     float timer;
 
+    public float timeNotIt = 0f;
+
     Tagged hit;
 
     Tagged self;
@@ -33,6 +36,7 @@ public class ShootLasers : MonoBehaviour
         shootableMask = LayerMask.GetMask ("Shootable");
 
         self = GetComponentInParent<Tagged> ();
+
     }
 
     // Update is called once per frame
@@ -53,6 +57,11 @@ public class ShootLasers : MonoBehaviour
             }
         }
         
+        if (!self.It)
+        {
+            timeNotIt += Time.deltaTime;
+        }
+
         // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
         if(timer >= (timeBetweenLasers * effectsDisplayTime))
         {
