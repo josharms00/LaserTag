@@ -15,7 +15,7 @@ public class Player1Movement : MonoBehaviour
         // always is called regardless of if script is enabled
         void Awake()
         {
-            // anim = GetComponent<Animator>();
+            anim = GetComponent<Animator>();
             playerRigidBody = GetComponent <Rigidbody> ();
         }
 
@@ -27,8 +27,7 @@ public class Player1Movement : MonoBehaviour
             float v = Input.GetAxisRaw("Vertical"); // w and s keys
 
             Move(h, v);
-            //Turning();
-            // Animating(h, v);
+            Animating(h, v);
         }
 
         void Move (float h, float v)
@@ -44,17 +43,10 @@ public class Player1Movement : MonoBehaviour
             transform.Translate(movement, Space.Self);
         }
 
-        // void Turning()
-        // {
-        //     Quaternion newRotation = Quaternion.LookRotation(Input.mousePosition);
-        //     playerRigidBody.MoveRotation(newRotation);
-            
-        // }
-
-        // void Animating(float h, float v)
-        // {
-        //     bool walking = ( h != 0f || v != 0f );
-        //     anim.SetBool("IsWalking", walking);
-        // }
+        void Animating(float h, float v)
+        {
+            bool moving = ( h != 0f || v != 0f );
+            anim.SetBool("IsMoving", moving);
+        }
 }
 

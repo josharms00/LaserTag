@@ -12,6 +12,8 @@ public class ChasePlayer : MonoBehaviour
 
     Tagged tagged;
 
+    Animator anim;
+
 
     void Awake ()
     {
@@ -20,6 +22,8 @@ public class ChasePlayer : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
 
         tagged = GetComponent<Tagged> ();
+
+        anim = GetComponent<Animator>();
         
     }
 
@@ -37,6 +41,7 @@ public class ChasePlayer : MonoBehaviour
             nav.SetDestination(10*player.forward);
         }
         
+        anim.SetBool("IsMoving", true);
         
     }
 }
