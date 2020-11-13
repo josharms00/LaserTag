@@ -9,6 +9,8 @@ public class PauseManager : MonoBehaviour
 
     Canvas menu;
 
+    public GameOverManager gameOverManager;
+
     void Start()
     {
         Cursor.visible = false;
@@ -25,13 +27,13 @@ public class PauseManager : MonoBehaviour
             paused = !paused;
         }
 
-        if(paused)
+        if(paused && !gameOverManager.GameOver)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             menu.enabled = true;
         }
-        else
+        else if (!paused || !gameOverManager.GameOver)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

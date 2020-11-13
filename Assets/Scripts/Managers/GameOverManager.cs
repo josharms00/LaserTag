@@ -9,14 +9,24 @@ public class GameOverManager : MonoBehaviour
 
     public ScoreManager scoreManager;
 
+    public PauseManager pauseManager;
+
+    public bool GameOver = false;
+
     // Update is called once per frame
     void Update()
     {
         if(timer.timeRemaining == 0)
         {
             AddToLeaderboard();
-
-            SceneManager.LoadScene("LaserTagArena", LoadSceneMode.Single);
+            
+            pauseManager.paused = true;
+            
+            GameOver = true;
+        }
+        else
+        {
+            GameOver = false;
         }
     }
 
