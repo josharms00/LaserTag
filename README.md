@@ -1,6 +1,6 @@
 # LaserTag
 
-Description:
+## Description:
 
 A laser tag game between two robots made in Unity.
 
@@ -14,7 +14,7 @@ The enemy player navigates the area through a navmesh and will start shooting wh
 
 ![Image](screenshots/screenshot.PNG)
 
-How to run:
+## How to run:
 
 Built for Windows.
 
